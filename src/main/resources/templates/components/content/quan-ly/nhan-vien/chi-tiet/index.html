@@ -1,0 +1,466 @@
+<div class="container-fluid">
+	<!-- Breadcrumb-->
+	<div class="row pt-2 pb-2">
+		<div class="col-sm-9">
+			<h4 class="page-title">Quản lý nhân viên</h4>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="trang-chu">Trang chủ</a></li>
+				<li class="breadcrumb-item"><a href="javaScript:void();">Quản lý</a></li>
+				<li class="breadcrumb-item"><a href="quan-ly/nhan-vien">Nhân viên</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Chi tiết</li>
+			</ol>
+		</div>
+	</div>
+	<!-- End Breadcrumb-->
+
+	<div id="maNhanVien" th:attr="data-ma-nhan-vien=${maNhanVien}" class="row">
+		<div class="col-lg-4">
+			<div class="profile-card-3">
+				<div class="card">
+					<div class="user-fullimage">
+						<img id="nhanVienHinh" class="nhanVienHinh card-img-top" onerror="this.src='assets/images/no-image.jpg'" alt="user avatar">
+						<div class="middle">
+							<button id="btnTaiHinh" type="button" class="btn btn-primary btn-round waves-effect waves-light m-1">Tải hình mới</button>
+						</div>
+						<div class="details">
+							<h5 class="nhanVienHoTen mb-1 text-white ml-3">${Họ tên}</h5>
+							<h6 class="nhanVienEmail text-white ml-3">${Email}</h6>
+						</div>
+					</div>
+					<div class="card-body text-center">
+						<p class="nhanVienGhiChu">${Ghi chú}</p>
+						<div class="row">	
+							<div class="col p-2">
+								<h5 class="nhanVienSoLuongGhiNhan mb-0 line-height-5">${Tổng số ghi nhận}</h5>
+								<small class="mb-0 font-weight-bold">Ghi nhận</small>
+							</div>
+							<div class="col p-2">
+								<h5 class="nhanVienSoLuongGhiNhanThuong mb-0 line-height-5">${Tổng số ghi nhận thưởng}</h5>
+								<small class="mb-0 font-weight-bold">Thưởng</small>
+							</div>
+							<div class="col p-2">
+								<h5 class="nhanVienSoLuongGhiNhanPhat mb-0 line-height-5">${Tổng số ghi nhận phạt}</h5>
+								<small class="mb-0 font-weight-bold">Phạt</small>
+							</div>
+						</div>
+
+						<div class="list-inline mt-2">
+							<a href="javascript:void()" class="list-inline-item btn-social btn-social-circle btn-facebook waves-effect waves-light">
+								<i class="fa fa-facebook"></i>
+							</a>
+							<a href="javascript:void()" class="list-inline-item btn-social btn-social-circle btn-google-plus waves-effect waves-light">
+								<i class="fa fa-google-plus"></i>
+							</a>
+							<a href="javascript:void()"	class="list-inline-item btn-social btn-social-circle btn-skype waves-effect waves-light">
+								<i class="fa fa-skype"></i>
+							</a>
+						</div>
+						<hr>
+						
+						<buttton onclick='jumpToRecordTab()' class="btn btn-primary shadow-primary btn-sm btn-round waves-effect waves-light m-1">Thêm ghi nhận</buttton>
+						<buttton class="btn btn-outline-primary btn-sm btn-round waves-effect waves-light m-1">Gửi email</buttton>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-8">
+			<div class="card">
+				<div class="card-body">
+					<ul class="nav nav-tabs nav-tabs-primary top-icon nav-justified">
+						<li class="nav-item">
+							<a href="javascript:void();" data-target="#profile" data-toggle="pill" class="nav-link active show">
+								<i class="icon-user"></i> <span class="hidden-xs">Hồ sơ</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="javascript:void();" data-target="#edit" data-toggle="pill" class="nav-link">
+								<i class="icon-note"></i> <span class="hidden-xs">Chi tiết</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="javascript:void();" data-target="#records" data-toggle="pill" class="nav-link">
+								<i class="icon-badge"></i> <span class="hidden-xs">Ghi nhận</span>
+							</a>
+						</li>
+					</ul>
+					
+					<div class="tab-content p-3">
+						<div class="tab-pane active show" id="profile">
+							<h5 class="mb-3">Hồ sơ nhân viên</h5>
+							<div class="row">
+								<div class="col-md-6">
+									<h6></h6>
+									<p>Nhân viên <span class="nhanVienTenPhongBan"></span></p>
+									<h6>Sở thích</h6>
+									<p>Nghe nhạc, bơi lội, đi bộ, nấu ăn, bóng đá</p>
+								</div>
+								<div class="col-md-6">
+									<h6>Danh hiệu</h6>
+									<a href="javascript:void();" class="badge badge-dark badge-pill">nhân viên xuất sắc</a>
+									<a href="javascript:void();" class="badge badge-dark badge-pill">nhân viên chăm chỉ</a>
+									<a href="javascript:void();" class="badge badge-dark badge-pill">nhân viên nghiêm túc</a>
+									<a href="javascript:void();" class="badge badge-dark badge-pill">nhân viên nhiều thành tích</a>
+									<hr>
+									<span class="badge badge-primary">
+										<i class="icon-badge icons"></i>
+										<span class="nhanVienSoLuongGhiNhan"></span>
+										ghi nhận
+									</span>
+									<span class="badge badge-success">
+										<i class="icon-like icons"></i>
+										<span class="nhanVienSoLuongGhiNhanThuong"></span>
+										thưởng
+									</span>
+									<span class="badge badge-danger">
+										<i class="icon-dislike icons"></i>
+										<span class="nhanVienSoLuongGhiNhanPhat"></span>
+										phạt
+									</span>
+								</div>
+								<div class="col-md-12">
+									<h5 class="mt-2 mb-3">
+										<span class="fa fa-clock-o ion-clock float-right"></span>
+										Ghi nhận gần nhất
+									</h5>
+									<table class="listGhiNhanGanNhat table table-hover table-striped">
+										<tbody>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!--/row-->
+						</div>
+						<div class="tab-pane" id="edit">
+							<form action="api/v1/nhanviens/update/" method="post" id="nhanVienFormChiTiet" class="nhanVienForm" novalidate="novalidate">
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Mã nhân viên</label>
+									<div class="col-lg-9">
+										<div class="input-group mb-3">
+											<div class="input-group-prepend">
+												<span class="input-group-text"><i class="fa fa-id-card-o"></i></span>
+											</div>
+											<input name="maNhanVien" readonly class="nhanVienMaNhanVienForm form-control" type="text" value="">
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Họ tên</label>
+									<div class="col-lg-9">
+										<div class="input-group mb-3">
+											<div class="input-group-prepend">
+												<span class="input-group-text"><i class="fa fa-user-o"></i></span>
+											</div>
+											<input name="hoTen" class="nhanVienHoTenForm form-control" type="text" value="">
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Giới tính</label>
+									<div class="col-lg-9 bt-switch">
+										<div class="bootstrap-switch-on bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-animate" style="width: 108px;">
+											<div class="bootstrap-switch-container" style="width: 159px; margin-left: 0px;">
+												<input name="gioiTinh" class="nhanVienGioiTinhForm" type="checkbox" checked="" data-on-color="primary" data-off-color="danger" data-on-text="Nam" data-off-text="Nữ">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Ngày sinh</label>
+									<div class="col-lg-9">
+										<div class="input-group mb-3">
+											<div class="input-group-prepend">
+												<span class="input-group-text"><i class="fa fa-calendar-o"></i></span>
+											</div>
+											<input name="ngaySinh" data-date-format="dd-mm-yyyy" class="nhanVienNgaySinhForm form-control default-datepicker" type="text">
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Email</label>
+									<div class="col-lg-9">
+										<div class="input-group mb-3">
+											<div class="input-group-prepend">
+												<span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
+											</div>
+											<input name="email" class="nhanVienEmailForm form-control" type="email" value="">
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Số điện thoại</label>
+									<div class="col-lg-9">
+										<div class="input-group mb-3">
+											<div class="input-group-prepend">
+												<span class="input-group-text"><i class="fa fa-phone"></i></span>
+											</div>
+											<input name="soDienThoai" maxlength="12" class="nhanVienSoDienThoaiForm form-control" type="text" value="">
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Lương</label>
+									<div class="col-lg-9">
+										<div class="input-group mb-3">
+											<div class="input-group-prepend">
+												<span class="input-group-text"><i class="fa fa-money"></i></span>
+											</div>
+											<input name="tienLuong" class="nhanVienTienLuongForm form-control" id="demo1" type="text" value="" style="display: block;">
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Ghi chú</label>
+									<div class="col-lg-9">
+										<textarea name="ghiChu" maxlength="255" rows="4" class="nhanVienGhiChuForm form-control" id="basic-textarea"></textarea>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Phòng ban</label>
+									<div class="col-lg-9">
+										<select name="maPhongBan" class="nhanVienPhongBanForm cboPhongBan form-control" id="basic-select"></select>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label"></label>
+									<div class="col-lg-9">
+										<button type="button" onclick="loadThongTinNhanVienAjax()" class="btn btn-secondary"><i class="fa fa-refresh"></i> KHÔI PHỤC</button>
+										<button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i> LƯU THAY ĐỔI</button>
+									</div>
+								</div>
+							</form>
+							
+							<form enctype="multipart/form-data" method="post" id="nhanVienUploadHinhForm" class="uploadHinhForm" style="display: none">
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Hình</label>
+									<div class="col-lg-9">
+										<input name="hinh" id="hinh" accept=".jpg" class="nhanVienHinhForm form-control" type="file">
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="tab-pane" id="records">
+							<div class="row">
+								<div class="col-md-3">
+									<ul class="nav nav-pills flex-column top-icon" role="tablist">
+										<li class="nav-item"><a class="nav-link active" data-toggle="pill" href="#piil-25"><i class="icon-like"></i> <span class="hidden-xs">Thưởng</span></a></li>
+										<li class="nav-item"><a class="nav-link" data-toggle="pill" href="#piil-26"><i class="icon-dislike"></i> <span class="hidden-xs">Phạt</span></a></li>
+									</ul>
+								</div>
+								<div class="col-md-9">
+									<!-- Tab panes -->
+									<div class="tab-content">
+									
+										<!-- Ghi nhận thưởng -->
+										<div id="piil-25" class="container tab-pane active">
+											<button type="button" class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target="#modal-them-ghi-nhan-thuong">
+												<i aria-hidden="true" class="fa fa-plus-square"></i>
+												Thêm
+											</button>
+											<div class="modal fade" id="modal-them-ghi-nhan-thuong" style="display: none;" aria-hidden="true">
+												<div class="modal-dialog modal-lg">
+													<div class="modal-content animated bounceIn">
+														<div class="modal-header bg-success">
+															<h5 class="text-white modal-title">
+																<i class="icon-like"></i> Thêm ghi nhận thưởng
+															</h5>
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">×</span>
+															</button>
+														</div>
+														<div class="modal-body">
+															<form action="api/v1/ghinhans/insert" method="post" id="ghiNhanThuongFormThem" class="ghiNhanForm" novalidate="novalidate">
+																<div class="form-group row">
+																	<label class="col-lg-3 col-form-label form-control-label">Ngày ghi nhận</label>
+																	<div class="col-lg-9">
+																		<input name="ngayGhiNhan" data-date-format="dd-mm-yyyy" class="ghiNhanNgayGhiNhanForm form-control" type="text">
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label class="col-lg-3 col-form-label form-control-label">Lý do</label>
+																	<div class="col-lg-9">
+																		<textarea name="lyDo" rows="4" class="ghiNhanLyDoForm form-control" id="basic-textarea"></textarea>
+																	</div>
+																</div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-secondary" data-dismiss="modal">
+																		<i class="fa fa-times"></i> Đóng
+																	</button>
+																	<button type="submit" class="btn btn-success">
+																		<i class="fa fa-check-square-o"></i> Hoàn tất
+																	</button>
+																</div>
+															</form>
+														</div>
+														
+													</div>
+												</div>
+											</div>
+											<div class="d-flex justify-content-center mt-3">
+												<ul class="page-part-ghi-nhan-thuong pagination pagination-sm pagination-round pagination-outline-success"></ul>
+											</div>
+											<div class="listGhiNhanThuong list-group">
+											</div>
+										</div>
+										
+										<!-- Ghi nhận phạt -->
+										<div id="piil-26" class="container tab-pane fade">
+											<button type="button" class="btn btn-danger waves-effect waves-light" data-toggle="modal" data-target="#modal-them-ghi-nhan-phat">
+												<i aria-hidden="true" class="fa fa-plus-square"></i>
+												Thêm
+											</button>
+											<div class="modal fade" id="modal-them-ghi-nhan-phat" style="display: none;" aria-hidden="true">
+												<div class="modal-dialog modal-lg">
+													<div class="modal-content animated bounceIn">
+														<div class="modal-header bg-danger">
+															<h5 class="text-white modal-title">
+																<i class="icon-dislike"></i> Thêm ghi nhận phạt
+															</h5>
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">×</span>
+															</button>
+														</div>
+														<div class="modal-body">
+															<form action="api/v1/ghinhans/insert" method="post" id="ghiNhanPhatFormThem" class="ghiNhanForm" novalidate="novalidate">
+																<div class="form-group row">
+																	<label class="col-lg-3 col-form-label form-control-label">Ngày ghi nhận</label>
+																	<div class="col-lg-9">
+																		<input name="ngayGhiNhan" data-date-format="dd-mm-yyyy" class="ghiNhanNgayGhiNhanForm form-control" type="text">
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label class="col-lg-3 col-form-label form-control-label">Lý do</label>
+																	<div class="col-lg-9">
+																		<textarea name="lyDo" rows="4" class="ghiNhanLyDoForm form-control" id="basic-textarea"></textarea>
+																	</div>
+																</div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-secondary" data-dismiss="modal">
+																		<i class="fa fa-times"></i> Đóng
+																	</button>
+																	<button type="submit" class="btn btn-danger">
+																		<i class="fa fa-check-square-o"></i> Hoàn tất
+																	</button>
+																</div>
+															</form>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="d-flex justify-content-center mt-3">
+												<ul class="page-part-ghi-nhan-phat pagination pagination-sm pagination-round pagination-outline-danger"></ul>
+											</div>
+											<div class="listGhiNhanPhat list-group">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modal-chi-tiet-ghi-nhan-thuong" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content animated bounceIn">
+			<div class="modal-header bg-success">
+				<h5 class="text-white modal-title">
+					<i class="icon-like"></i> Chi tiết ghi nhận thưởng
+				</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form action="api/v1/ghinhans/update/" method="post" id="ghiNhanThuongFormChiTiet" class="ghiNhanForm" novalidate="novalidate">
+					<div class="form-group row">
+						<label class="col-lg-3 col-form-label form-control-label">Mã ghi nhận</label>
+						<div class="col-lg-9">
+							<input readonly name="maGhiNhan" class="form-control" type="text">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-form-label form-control-label">Ngày ghi nhận</label>
+						<div class="col-lg-9">
+							<input name="ngayGhiNhan" data-date-format="dd-mm-yyyy" class="ghiNhanNgayGhiNhanForm form-control" type="text">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-form-label form-control-label">Nhân viên</label>
+						<div class="col-lg-9">
+							<input readonly name="tenNhanVien" class="form-control" type="text">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-form-label form-control-label">Lý do</label>
+						<div class="col-lg-9">
+							<textarea name="lyDo" rows="4" class="ghiNhanLyDoForm form-control" id="basic-textarea"></textarea>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">
+							<i class="fa fa-times"></i> Đóng
+						</button>
+						<button type="submit" class="btn btn-success">
+							<i class="fa fa-check-square-o"></i> Lưu thay đổi
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modal-chi-tiet-ghi-nhan-phat" style="display: none;" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content animated bounceIn">
+			<div class="modal-header bg-danger">
+				<h5 class="text-white modal-title">
+					<i class="icon-dislike"></i> Chi tiết ghi nhận phạt
+				</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form action="api/v1/ghinhans/update/" method="post" id="ghiNhanPhatFormChiTiet" class="ghiNhanForm" novalidate="novalidate">
+					<div class="form-group row">
+						<label class="col-lg-3 col-form-label form-control-label">Mã ghi nhận</label>
+						<div class="col-lg-9">
+							<input readonly name="maGhiNhan" class="form-control" type="text">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-form-label form-control-label">Ngày ghi nhận</label>
+						<div class="col-lg-9">
+							<input name="ngayGhiNhan" data-date-format="dd-mm-yyyy" class="ghiNhanNgayGhiNhanForm form-control" type="text">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-form-label form-control-label">Nhân viên</label>
+						<div class="col-lg-9">
+							<input readonly name="tenNhanVien" class="form-control" type="text">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-lg-3 col-form-label form-control-label">Lý do</label>
+						<div class="col-lg-9">
+							<textarea name="lyDo" rows="4" class="ghiNhanLyDoForm form-control" id="basic-textarea"></textarea>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">
+							<i class="fa fa-times"></i> Đóng
+						</button>
+						<button type="submit" class="btn btn-danger">
+							<i class="fa fa-check-square-o"></i> Lưu thay đổi
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

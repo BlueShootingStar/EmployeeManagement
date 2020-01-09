@@ -1,0 +1,257 @@
+<div class="container-fluid">
+	<div class="row pt-2 pb-2">
+		<div class="col-sm-12">
+			<h4 class="page-title text-primary"><i aria-hidden="true" class="fa fa-th-large"></i> <span th:text="#{dashboard.part.statistic.amount}"></span></h4>
+		</div>
+	</div>
+
+	<div class="row d-flex justify-content-center">
+		<div class="col-12 col-md-6 col-lg-6 col-xl-2">
+			<div class="card text-center border-bottom-sm border-top-sm border-primary">
+				<div class="card-body">
+					<h6><span th:text="#{dashboard.part.statistic.amount.staff}"></span></h6>
+					<h4 class="text-primary"><span th:text="${thongKeSoLuong.soLuongNhanVien}"></span></h4>
+					<span id="widget-chart-1"><canvas width="118" height="25" style="display: inline-block; width: 118px; height: 25px; vertical-align: top;"></canvas></span>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-md-6 col-lg-6 col-xl-2">
+			<div class="card text-center border-bottom-sm border-top-sm border-warning">
+				<div class="card-body">
+					<h6><span th:text="#{dashboard.part.statistic.amount.department}"></span></h6>
+					<h4 class="text-warning"><span th:text="${thongKeSoLuong.soLuongPhongBan}"></span></h4>
+					<span id="widget-chart-4"><canvas width="118" height="25" style="display: inline-block; width: 118px; height: 25px; vertical-align: top;"></canvas></span>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-md-6 col-lg-6 col-xl-2">
+			<div class="card text-center border-bottom-sm border-top-sm border-info">
+				<div class="card-body">
+					<h6><span th:text="#{dashboard.part.statistic.amount.record}"></span></h6>
+					<h4 class="text-info"><span th:text="${thongKeSoLuong.soLuongGhiNhan}"></span></h4>
+					<span id="widget-chart-5"><canvas width="118" height="25" style="display: inline-block; width: 118px; height: 25px; vertical-align: top;"></canvas></span>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-md-6 col-lg-6 col-xl-2">
+			<div class="card text-center border-bottom-sm border-top-sm border-success">
+				<div class="card-body">
+					<h6><span th:text="#{dashboard.part.statistic.amount.record.good}"></span></h6>
+					<h4 class="text-success"><span th:text="${thongKeSoLuong.soLuongGhiNhanThuong}"></span></h4>
+					<span id="widget-chart-3"><canvas width="118" height="25" style="display: inline-block; width: 118px; height: 25px; vertical-align: top;"></canvas></span>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-md-6 col-lg-6 col-xl-2">
+			<div class="card text-center border-bottom-sm border-top-sm border-danger">
+				<div class="card-body">
+					<h6><span th:text="#{dashboard.part.statistic.amount.record.bad}"></span></h6>
+					<h4 class="text-danger"><span th:text="${thongKeSoLuong.soLuongGhiNhanPhat}"></span></h4>
+					<span id="widget-chart-2"><canvas width="118" height="25" style="display: inline-block; width: 118px; height: 25px; vertical-align: top;"></canvas></span>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-md-6 col-lg-6 col-xl-2">
+			<div class="card text-center border-bottom-sm border-top-sm border-dark">
+				<div class="card-body">
+					<h6><span th:text="#{dashboard.part.statistic.amount.record.total}"></span></h6>
+					<h4 class="text-dark"><span th:text="${thongKeSoLuong.soLuongGhiNhanThuong - thongKeSoLuong.soLuongGhiNhanPhat}"></span></h4>
+					<span id="widget-chart-6"><canvas width="118" height="25" style="display: inline-block; width: 118px; height: 25px; vertical-align: top;"></canvas></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--End row-->
+	
+	<div class="row pt-2 pb-2">
+		<div class="col-sm-12">
+			<h4 class="page-title text-warning"><i aria-hidden="true" class="fa fa-star"></i> <span th:text="#{dashboard.part.statistic.top5staff}"></span></h4>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="card">
+				<div class="card-body">
+					<ul class="nav nav-tabs nav-tabs-warning nav-justified top-icon">
+						<li th:each="listNhanVien : ${mapListTop5NhanVienCoDiemCaoNhatTrongThangTruoc}" class="nav-item">
+							<a class="nav-link" th:classappend="${listNhanVienStat.index == 0} ? active : ''" data-toggle="tab" th:href="'#tabe-' + ${listNhanVienStat.index}">
+								<i class="icon-calendar icons"></i> <span th:text="${listNhanVienStat.index == 0} ? 'Tháng này' : ${listNhanVienStat.index} + ' tháng trước'" class="hidden-xs"></span>
+							</a>
+						</li>
+					</ul>
+
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div id="tabe-0" class="container tab-pane active">
+							<div class="row">
+								<div class="col-lg-12">
+									<section class="cd-timeline js-cd-timeline">
+										<div class="cd-timeline__container">
+										
+											<div class="cd-timeline__block js-cd-block" th:each="nhanVien : ${mapListTop5NhanVienCoDiemCaoNhatTrongThangTruoc.cach0ThangTruoc}">
+												<div class="cd-timeline__img cd-timeline__img--location js-cd-img cd-timeline__img--bounce-in">
+													<img src="assets\images\timeline\trophy.svg" alt="Location">
+												</div>
+												<!-- cd-timeline__img -->
+
+												<div class="cd-timeline__content js-cd-content cd-timeline__content--bounce-in">
+													<div class="card card-primary shadow-primary">
+														<div class="row justify-content-center ">
+															<div class="col-4">
+																<img th:src="@{'/images/avatars/nhan-vien/' + ${nhanVien.hinh}}" class="border border-primary rounded-circle ml-4 mt-4 card-img-top img-fluid" alt="Card image cap">
+															</div>
+															<div class="col-8">
+																<div class="card-body">
+																	<h5 class="card-title text-primary">
+																		<span th:text="${#strings.toUpperCase(nhanVien.hoTen)}"></span>
+																	</h5>
+																	<p class="card-text">
+																		<span class="text-success"><span th:text="${nhanVien.tongSoGhiNhanThuong}"></span> <i class="icon-like icons"></i></span>
+																		<span class="text-danger"><span class="text-danger" th:text="${nhanVien.tongSoGhiNhanPhat}"></span> <i class="icon-dislike icons"></i></span>
+																	</p>
+																	<p class="card-text text-warning">
+																		<strong>TỔNG ĐIỂM: <span th:text="${nhanVien.tongSoDiem}"></span></strong>
+																	</p>
+																	<p class="card-text"><strong>PHÒNG BAN:</strong> <span th:text="${nhanVien.tenPhongBan}"></span></p>
+																	<hr>
+																	<a th:href="@{'quan-ly/nhan-vien/chi-tiet/' + ${nhanVien.maNhanVien}}" class="btn btn-primary waves-effect waves-light m-1">
+																		<i class="fa fa-star mr-1"></i> Chi tiết
+																	</a>
+																</div>
+															</div>
+														</div>
+														<div class="row">
+														
+														</div>
+													</div>
+													<strong><span class="cd-timeline__date">TOP <span th:text="${nhanVienStat.index + 1}"></span></span></strong>
+												</div>
+												<!-- cd-timeline__content -->
+											</div>
+											<!-- cd-timeline__block -->
+											
+										</div>
+									</section>
+									<!-- cd-timeline -->
+								</div>
+							</div>
+						</div>
+						<div id="tabe-1" class="container tab-pane fade">
+							<div class="row">
+								<div class="col-lg-12">
+									<section class="cd-timeline js-cd-timeline">
+										<div class="cd-timeline__container">
+										
+											<div class="cd-timeline__block js-cd-block" th:each="nhanVien : ${mapListTop5NhanVienCoDiemCaoNhatTrongThangTruoc.cach1ThangTruoc}">
+												<div class="cd-timeline__img cd-timeline__img--location js-cd-img cd-timeline__img--bounce-in">
+													<img src="assets\images\timeline\trophy.svg" alt="Location">
+												</div>
+												<!-- cd-timeline__img -->
+
+												<div class="cd-timeline__content js-cd-content cd-timeline__content--bounce-in">
+													<div class="card card-primary shadow-primary">
+														<div class="row justify-content-center ">
+															<div class="col-4">
+																<img th:src="@{'/images/avatars/nhan-vien/' + ${nhanVien.hinh}}" class="border border-primary rounded-circle ml-4 mt-4 card-img-top img-fluid" alt="Card image cap">
+															</div>
+															<div class="col-8">
+																<div class="card-body">
+																	<h5 class="card-title text-primary">
+																		<span th:text="${#strings.toUpperCase(nhanVien.hoTen)}"></span>
+																	</h5>
+																	<p class="card-text">
+																		<span class="text-success"><span th:text="${nhanVien.tongSoGhiNhanThuong}"></span> <i class="icon-like icons"></i></span>
+																		<span class="text-danger"><span class="text-danger" th:text="${nhanVien.tongSoGhiNhanPhat}"></span> <i class="icon-dislike icons"></i></span>
+																	</p>
+																	<p class="card-text text-warning">
+																		<strong>TỔNG ĐIỂM: <span th:text="${nhanVien.tongSoDiem}"></span></strong>
+																	</p>
+																	<p class="card-text"><strong>PHÒNG BAN:</strong> <span th:text="${nhanVien.tenPhongBan}"></span></p>
+																	<hr>
+																	<a th:href="@{'quan-ly/nhan-vien/chi-tiet/' + ${nhanVien.maNhanVien}}" class="btn btn-primary waves-effect waves-light m-1">
+																		<i class="fa fa-star mr-1"></i> Chi tiết
+																	</a>
+																</div>
+															</div>
+														</div>
+														<div class="row">
+														
+														</div>
+													</div>
+													<strong><span class="cd-timeline__date">TOP <span th:text="${nhanVienStat.index + 1}"></span></span></strong>
+												</div>
+												<!-- cd-timeline__content -->
+											</div>
+											<!-- cd-timeline__block -->
+											
+										</div>
+									</section>
+									<!-- cd-timeline -->
+								</div>
+							</div>
+						</div>
+						<div id="tabe-2" class="container tab-pane fade">
+							<div class="row">
+								<div class="col-lg-12">
+									<section class="cd-timeline js-cd-timeline">
+										<div class="cd-timeline__container">
+										
+											<div class="cd-timeline__block js-cd-block" th:each="nhanVien : ${mapListTop5NhanVienCoDiemCaoNhatTrongThangTruoc.cach2ThangTruoc}">
+												<div class="cd-timeline__img cd-timeline__img--location js-cd-img cd-timeline__img--bounce-in">
+													<img src="assets\images\timeline\trophy.svg" alt="Location">
+												</div>
+												<!-- cd-timeline__img -->
+
+												<div class="cd-timeline__content js-cd-content cd-timeline__content--bounce-in">
+													<div class="card card-primary shadow-primary">
+														<div class="row justify-content-center ">
+															<div class="col-4">
+																<img th:src="@{'/images/avatars/nhan-vien/' + ${nhanVien.hinh}}" class="border border-primary rounded-circle ml-4 mt-4 card-img-top img-fluid" alt="Card image cap">
+															</div>
+															<div class="col-8">
+																<div class="card-body">
+																	<h5 class="card-title text-primary">
+																		<span th:text="${#strings.toUpperCase(nhanVien.hoTen)}"></span>
+																	</h5>
+																	<p class="card-text">
+																		<span class="text-success"><span th:text="${nhanVien.tongSoGhiNhanThuong}"></span> <i class="icon-like icons"></i></span>
+																		<span class="text-danger"><span class="text-danger" th:text="${nhanVien.tongSoGhiNhanPhat}"></span> <i class="icon-dislike icons"></i></span>
+																	</p>
+																	<p class="card-text text-warning">
+																		<strong>TỔNG ĐIỂM: <span th:text="${nhanVien.tongSoDiem}"></span></strong>
+																	</p>
+																	<p class="card-text"><strong>PHÒNG BAN:</strong> <span th:text="${nhanVien.tenPhongBan}"></span></p>
+																	<hr>
+																	<a th:href="@{'quan-ly/nhan-vien/chi-tiet/' + ${nhanVien.maNhanVien}}" class="btn btn-primary waves-effect waves-light m-1">
+																		<i class="fa fa-star mr-1"></i> Chi tiết
+																	</a>
+																</div>
+															</div>
+														</div>
+														<div class="row">
+														
+														</div>
+													</div>
+													<strong><span class="cd-timeline__date">TOP <span th:text="${nhanVienStat.index + 1}"></span></span></strong>
+												</div>
+												<!-- cd-timeline__content -->
+											</div>
+											<!-- cd-timeline__block -->
+											
+										</div>
+									</section>
+									<!-- cd-timeline -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--End Row-->
+
+</div>
+<!-- End container-fluid-->
+

@@ -1,0 +1,143 @@
+<div class="container-fluid">
+	<!-- Breadcrumb-->
+	<div class="row pt-2 pb-2">
+		<div class="col-sm-9">
+			<h4 class="page-title">Quản lý phòng ban</h4>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="trang-chu">Trang chủ</a></li>
+				<li class="breadcrumb-item"><a href="javaScript:void();">Quản lý</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Phòng ban</li>
+			</ol>
+		</div>
+	</div>
+	<!-- End Breadcrumb-->
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="card">
+				<div class="card-header">
+					<i class="fa fa-table"></i> Danh sách phòng ban
+				</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-lg-12">
+							<button onclick="clearForm()" data-backdrop="static" data-keyboard="false" type="button" class="btn btn-warning waves-effect waves-light" data-toggle="modal" data-target="#modal-them-phong-ban">
+								<i aria-hidden="true" class="fa fa-plus-square"></i> Thêm phòng ban
+							</button>
+						</div>
+					</div>
+							
+					<div class="d-flex justify-content-center mt-3">
+						<span id="soLuongPhongBan"></span>
+					</div>
+					<div class="d-flex justify-content-center mt-3">
+						<ul class="page-part pagination pagination-warning"></ul>
+					</div>
+							
+					<div id="listPhongBan" class="row"></div>
+
+					<div class="d-flex justify-content-center mt-3">
+						<ul class="page-part pagination pagination-warning"></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Row-->
+	
+	<!-- form them phong ban -->
+	<div class="modal fade" id="modal-them-phong-ban" style="display: none;" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content animated bounceIn">
+				<div class="modal-header bg-warning">
+					<h5 class="text-white modal-title">
+						<i class="icon-layers icons"></i> Thêm phòng ban mới
+					</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span class="text-white" aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col">
+							<form action="api/v1/phongbans/insert" method="post" id="phongBanFormThem" class="phongBanForm" novalidate="novalidate">
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Tên phòng ban</label>
+									<div class="col-lg-9">
+										<div class="input-group mb-3">
+											<div class="input-group-prepend">
+												<span class="input-group-text"><i class="fa fa-cube"></i></span>
+											</div>
+											<input name="tenPhongBan" class="phongBanTenPhongBanForm form-control" type="text" value="">
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label"></label>
+									<div class="col-lg-9">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i> Đóng</button>
+										<button type="submit" class="btn btn-warning"><i class="fa fa-check-square-o"></i> Hoàn tất</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- form sua phong ban -->
+	<div class="modal fade" id="modal-chi-tiet-phong-ban" style="display: none;" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content animated bounceIn">
+				<div class="modal-header bg-warning">
+					<h5 class="text-white modal-title">
+						<i class="icon-layers icons"></i> Chi tiết phòng ban
+					</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span class="text-white" aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col">
+							<form action="api/v1/phongbans/update" method="post" id="phongBanFormChiTiet" class="phongBanForm" novalidate="novalidate">
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Mã phòng ban</label>
+									<div class="col-lg-9">
+										<div class="input-group mb-3">
+											<div class="input-group-prepend">
+												<span class="input-group-text"><i class="fa fa-cube"></i></span>
+											</div>
+											<input readonly name="maPhongBan" class="phongBanMaPhongBanForm form-control" type="text" value="">
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Tên phòng ban</label>
+									<div class="col-lg-9">
+										<div class="input-group mb-3">
+											<div class="input-group-prepend">
+												<span class="input-group-text"><i class="fa fa-cube"></i></span>
+											</div>
+											<input name="tenPhongBan" class="phongBanTenPhongBanForm form-control" type="text" value="">
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label"></label>
+									<div class="col-lg-9">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i> Đóng</button>
+										<button type="submit" class="btn btn-warning"><i class="fa fa-check-square-o"></i> Hoàn tất</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End container-fluid-->

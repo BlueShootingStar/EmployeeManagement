@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Quản lý nhân sự - Đăng nhập</title>
+<!--favicon-->
+<link rel="icon" href="assets\images\favicon.ico" type="image/x-icon">
+<!-- Bootstrap core CSS-->
+<link href="assets\css\bootstrap.min.css" rel="stylesheet">
+<!-- animate CSS-->
+<link href="assets\css\animate.css" rel="stylesheet" type="text/css">
+<!-- Icons CSS-->
+<link href="assets\css\icons.css" rel="stylesheet" type="text/css">
+<!-- Custom Style-->
+<link href="assets\css\app-style.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Start wrapper-->
+<div id="wrapper">
+	<div class="card-authentication2 mx-auto my-5">
+		<div class="card-group">
+			<div class="card mb-0">
+				<div class="bg-signin2"></div>
+				<div class="card-img-overlay rounded-left my-5">
+					<h2 class="text-white">Quản lý nhân sự</h2>
+					<h1 class="text-white">Trang quản trị</h1>
+					<p class="card-text text-white pt-3"></p>
+				</div>
+			</div>
+
+			<div class="card mb-0 ">
+				<div class="card-body">
+					<div class="card-content p-3">
+						<div class="text-center">
+							<img src="assets\images\logo-icon.png">
+						</div>
+						<div class="card-title text-uppercase text-center py-3">Đăng nhập</div>
+						<form th:action="@{/dang-nhap}" method="post">
+							<div class="form-group">
+								<div class="position-relative has-icon-left">
+									<label for="exampleInputUsername" class="sr-only">Tên tài khoản</label>
+									<input name="tenDangNhap" type="text" class="form-control" placeholder="Tên tài khoản">
+									<div class="form-control-position">
+										<i class="icon-user"></i>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="position-relative has-icon-left">
+									<label for="exampleInputPassword" class="sr-only">Mật khẩu</label>
+									<input name="matKhau" type="password" class="form-control" placeholder="Mật khẩu">
+									<div class="form-control-position">
+										<i class="icon-lock"></i>
+									</div>
+								</div>
+							</div>
+							<div class="form-row mr-0 ml-0">
+								<div class="form-group col-6">
+									<div class="icheck-primary">
+										<input name="remember-me" type="checkbox" id="user-checkbox">
+										<label for="user-checkbox">Ghi nhớ tài khoản</label>
+									</div>
+								</div>
+							</div>
+							<div class="text-center pt-3">
+								<p class="text-danger" th:if="${param.error}">Sai thông tin đăng nhập</p>
+							</div>
+							<input type="submit" class="btn btn-outline-primary btn-block waves-effect waves-light" value="Đăng nhập">
+						</form>
+						<hr>
+						<div class="text-center pt-3">
+							<p>hoặc đăng nhập bằng</p>
+							<a href="javascript:void()" class="btn-social-text btn-outline-facebook waves-effect waves-light m-1"><i class="fa fa-facebook-square"></i> <span>facebook</span></a>
+							<a href="javascript:void()" class="btn-social-text btn-outline-google-plus waves-effect waves-light m-1"><i class="fa fa-google-plus"></i> <span>google+</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Start Back To Top Button-->
+	<a href="javaScript:void();" class="back-to-top">
+		<i class="fa fa-angle-double-up"></i>
+	</a>
+	<!--End Back To Top Button-->
+</div>
+<!--wrapper-->
+
+<!-- Bootstrap core JavaScript-->
+<script src="assets\js\jquery.min.js"></script>
+<script src="assets\js\popper.min.js"></script>
+<script src="assets\js\bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<base th:href="@{/}">
+<title>Quản lý nhân sự</title>
+<div th:replace="${component.css}"></div>
+</head>
+<body>
+
+<!-- Start wrapper-->
+<div id="wrapper">
+	
+	<!--Start sidebar-wrapper-->
+	<div th:replace="components/bar/side-bar"></div>
+	<!--End sidebar-wrapper-->
+
+	<!--Start topbar header-->
+	<div th:replace="components/bar/top-bar"></div>
+	<!--End topbar header-->
+
+	<div class="clearfix"></div>
+
+	<div class="content-wrapper">
+		<div th:replace="${component.html}"></div>
+	</div>
+	<!--End content-wrapper-->
+	
+	<!--Start Back To Top Button-->
+	<a href="javaScript:void();" class="back-to-top">
+		<i class="fa fa-angle-double-up"></i>
+	</a>
+	<!--End Back To Top Button-->
+
+	<!--Start footer-->
+	<footer class="footer">
+		<div class="container">
+			<div class="text-center"></div>
+		</div>
+	</footer>
+	<!--End footer-->
+
+</div>
+<!--End wrapper-->
+
+<div th:replace="${component.js}"></div>
+<script src="assets\plugins\jquery-cookie\jquery.cookie.js"></script>
+<script>
+$(function() {
+	$("#language-flag").removeClass();
+	
+	if ($.cookie("language") == "") {
+		$("#language-flag").addClass("border border-white flag-icon flag-icon-gb");
+	}
+	else {
+		$("#language-flag").addClass("border border-white flag-icon flag-icon-" + $.cookie("language"));
+	}
+});
+</script>
+</body>
+</html>

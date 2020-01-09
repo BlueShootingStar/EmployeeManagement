@@ -1,0 +1,258 @@
+<div class="container-fluid">
+	<!-- Breadcrumb-->
+	<div class="row pt-2 pb-2">
+		<div class="col-sm-9">
+			<h4 class="page-title">Quản lý nhân viên</h4>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="trang-chu">Trang chủ</a></li>
+				<li class="breadcrumb-item"><a href="javaScript:void();">Quản lý</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Nhân viên</li>
+			</ol>
+		</div>
+	</div>
+	<!-- End Breadcrumb-->
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="card">
+				<div class="card-header">
+					<i class="fa fa-table"></i> Danh sách nhân viên
+				</div>
+				<div class="card-body">
+					<div class="row mb-4">
+						<div class="col-lg-12">
+							<button onclick="clearForm()" data-backdrop="static" data-keyboard="false" type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#modal-them-nhan-vien">
+								<i aria-hidden="true" class="fa fa-plus-square"></i> Thêm nhân viên
+							</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6 col-md-6">
+							<div class="mb-2">
+								<label>Hiện</label>
+								<label>
+								<select id="soLuongMuc" class="form-control form-control-sm">
+									<option value="5">5</option>
+									<option value="10">10</option>
+									<option value="15">15</option>
+									<option value="20">20</option>
+								</select>
+								</label>
+								<label>mục</label>
+							</div>
+							<div class="mb-2">
+								<label>Phòng ban</label>
+								<label>
+									<select id="timKiemPhongBan" class="form-control form-control-sm">
+										<option value="" class="text-primary">Tất cả</option>
+										<option value="null" class="text-danger">Chưa có</option>
+									</select>
+								</label>
+							</div>
+						</div>
+						<div class="col-sm-6 col-md-6">
+							<div class="float-right mb-2">
+								<label>Tìm kiếm</label>
+								<label>
+									<input id="tuKhoaHoTen" type="search" class="form-control form-control-sm" placeholder="theo họ tên...">
+								</label>
+							</div>
+						</div>
+					</div>
+					
+					<div class="d-flex justify-content-center mt-3">
+						<span id="soLuongNhanVien"></span>
+					</div>
+					
+					<div class="d-flex justify-content-center mt-3">
+						<ul class="page-part pagination pagination-primary"></ul>
+					</div>
+					
+					<div class="row">
+						<div id="listNhanVienContainer" class="col-sm-12">
+							<div id="listNhanVien"></div>
+						</div>
+					</div>
+					
+					<div class="d-flex justify-content-center mt-3">
+						<ul class="page-part pagination pagination-primary"></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Row-->
+	
+	<!-- form them nhan vien -->
+	<div class="modal fade" id="modal-them-nhan-vien" style="display: none;" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content animated bounceIn">
+				<div class="modal-header bg-primary">
+					<h5 class="text-white modal-title">
+						<i class="icon-people icons"></i> Thêm nhân viên mới
+					</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span class="text-white" aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-4">
+							<div class="profile-card-3">
+								<div class="card">
+									<div class="user-fullimage">
+										<img src="" id="nhanVienHinh" class="nhanVienHinh card-img-top" onerror="this.src='assets/images/no-image.jpg'" alt="user avatar">
+										<div class="middle">
+											<button id="btnTaiHinh" type="button" class="btn btn-primary btn-round waves-effect waves-light m-1">Tải hình</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<form action="api/v1/nhanviens/insert" method="post" id="nhanVienFormThem" class="nhanVienForm" novalidate="novalidate">
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Họ tên</label>
+									<div class="col-lg-9">
+										<div class="input-group mb-3">
+											<div class="input-group-prepend">
+												<span class="input-group-text"><i class="fa fa-user-o"></i></span>
+											</div>
+											<input name="hoTen" class="nhanVienHoTenForm form-control" type="text" value="">
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Giới tính</label>
+									<div class="col-lg-9 bt-switch">
+										<div class="bootstrap-switch-on bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-animate" style="width: 108px;">
+											<div class="bootstrap-switch-container" style="width: 159px; margin-left: 0px;">
+												<input name="gioiTinh" class="nhanVienGioiTinhForm" type="checkbox" checked="" data-on-color="primary" data-off-color="danger" data-on-text="Nam" data-off-text="Nữ">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Ngày sinh</label>
+									<div class="col-lg-9">
+										<div class="input-group mb-3">
+											<div class="input-group-prepend">
+												<span class="input-group-text"><i class="fa fa-calendar-o"></i></span>
+											</div>
+											<input name="ngaySinh" data-date-format="dd-mm-yyyy" class="nhanVienNgaySinhForm form-control default-datepicker" type="text">
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Email</label>
+									<div class="col-lg-9">
+										<div class="input-group mb-3">
+											<div class="input-group-prepend">
+												<span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
+											</div>
+											<input name="email" class="nhanVienEmailForm form-control" type="email" value="">
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Số điện thoại</label>
+									<div class="col-lg-9">
+										<div class="input-group mb-3">
+											<div class="input-group-prepend">
+												<span class="input-group-text"><i class="fa fa-phone"></i></span>
+											</div>
+											<input name="soDienThoai" maxlength="12" class="nhanVienSoDienThoaiForm form-control" type="text" value="">
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Lương</label>
+									<div class="col-lg-9">
+										<div class="input-group mb-3">
+											<div class="input-group-prepend">
+												<span class="input-group-text"><i class="fa fa-money"></i></span>
+											</div>
+											<input name="tienLuong" class="nhanVienTienLuongForm form-control" id="demo1" type="text" value="" style="display: block;">
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Ghi chú</label>
+									<div class="col-lg-9">
+										<textarea name="ghiChu" maxlength="255" rows="4" class="nhanVienGhiChuForm form-control" id="basic-textarea"></textarea>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Phòng ban</label>
+									<div class="col-lg-9">
+										<select name="maPhongBan" class="nhanVienPhongBanForm cboPhongBan form-control" id="basic-select"></select>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label"></label>
+									<div class="col-lg-9">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i> Đóng</button>
+										<button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Hoàn tất</button>
+									</div>
+								</div>
+							</form>
+							
+							<form enctype="multipart/form-data" method="post" id="nhanVienUploadHinhForm" class="uploadHinhForm" style="display: none">
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Hình</label>
+									<div class="col-lg-9">
+										<input name="hinh" id="hinh" accept=".jpg" class="nhanVienHinhForm form-control" type="file">
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- form xac nhan so dien thoai -->
+	<div class="modal fade" id="modal-xac-nhan-so-dien-thoai" style="display: none;" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content animated bounceIn">
+				<div class="modal-header bg-warning">
+					<h5 class="text-white modal-title">
+						<i class="icon-phone icons"></i> Xác nhận số điện thoại
+					</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span class="text-white" aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col">
+							<form action="api/v1/phongbans/update" method="post" id="xacNhanSoDienThoaiForm" class="xacNhanForm" novalidate="novalidate">
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label">Một đoạn mã đã gửi đến số điện thoại này, vui lòng xác nhận</label>
+									<div class="col-lg-9">
+										<div class="input-group mb-3">
+											<div class="input-group-prepend">
+												<span class="input-group-text"><i class="fa fa-cube"></i></span>
+											</div>
+											<input name="maXacNhan" class="phongBanMaPhongBanForm form-control" type="text" value="" placeholder="Mã xác nhận" length="6">
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label form-control-label"></label>
+									<div class="col-lg-9">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i> Đóng</button>
+										<button type="submit" class="btn btn-warning"><i class="fa fa-check-square-o"></i> Hoàn tất</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+<!-- End container-fluid-->

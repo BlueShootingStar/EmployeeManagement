@@ -1,0 +1,36 @@
+<div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
+	<div class="brand-logo">
+		<a href="trang-chu"> 
+			<img src="assets\images\logo-icon.png" class="logo-icon" alt="logo icon">
+			<h5 class="logo-text"> <span th:text="#{sidebar.label.admin}"></span></h5>
+		</a>
+	</div>
+	<ul class="sidebar-menu do-nicescrol">
+		<li>
+			<a href="trang-chu" class="waves-effect">
+				<i class="icon-home"></i> 
+				<span th:text="#{sidebar.label.menu.dashboard}"></span>
+			</a>
+		</li>
+		
+		<li>
+			<a href="javaScript:void();" class="waves-effect">
+				<i class="icon-grid"></i>
+				<span th:text="#{sidebar.label.menu.management}"></span>
+				<i class="fa fa-angle-left float-right"></i>
+			</a>
+			<ul class="sidebar-submenu">
+				<li>
+					<a href="quan-ly/nhan-vien">
+						<i class="icon-people icons"></i> <span th:text="#{sidebar.label.menu.management.staff}"></span>
+					</a>
+				</li>
+				<li>
+					<a href="quan-ly/phong-ban">
+						<i class="icon-layers icons"></i> <span th:text="#{sidebar.label.menu.management.department}"></span>
+					</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</div>

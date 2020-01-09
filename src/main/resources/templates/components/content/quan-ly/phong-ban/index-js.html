@@ -1,0 +1,65 @@
+<!-- Bootstrap core JavaScript-->
+<script src="assets\js\jquery.min.js"></script>
+<script src="assets\js\popper.min.js"></script>
+<script src="assets\js\bootstrap.min.js"></script>
+
+<!-- simplebar js -->
+<script src="assets\plugins\simplebar\js\simplebar.js"></script>
+<!-- waves effect js -->
+<script src="assets\js\waves.js"></script>
+<!-- sidebar-menu js -->
+<script src="assets\js\sidebar-menu.js"></script>
+<!-- Custom scripts -->
+<script src="assets\js\app-script.js"></script>
+<!--Switchery Js-->
+<script src="assets\plugins\switchery\js\switchery.min.js"></script>
+<script>
+	let elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+	$('.js-switch').each(function() {
+		new Switchery($(this)[0], $(this).data());
+	});
+</script>
+
+<!--Bootstrap Switch Buttons-->
+<script src="assets\plugins\bootstrap-switch\bootstrap-switch.min.js"></script>
+<script>
+	$(".bt-switch input[type='checkbox'], .bt-switch input[type='radio']").bootstrapSwitch();
+	
+	let radioswitch = function() {
+		let bt = function() {
+			$(".radio-switch").on("switch-change", function() {
+				$(".radio-switch").bootstrapSwitch("toggleRadioState")
+			}),
+			$(".radio-switch").on("switch-change", function() {
+				$(".radio-switch").bootstrapSwitch("toggleRadioStateAllowUncheck")
+			}),
+			$(".radio-switch").on("switch-change", function() {
+				$(".radio-switch").bootstrapSwitch("toggleRadioStateAllowUncheck", !true)
+			})
+		};
+		
+		return {
+			init : function() {
+				bt();
+			}
+		}
+	}();
+	
+	$(document).ready(function() {
+		radioswitch.init();
+	});
+</script>
+
+<!--Form Validatin Script-->
+<script src="assets\plugins\jquery-validation\js\jquery.validate.min.js"></script>
+
+<!--Sweet Alerts -->
+<script src="assets\plugins\alerts-boxes\js\sweetalert2.all.min.js"></script>
+
+<script src="assets\customjs\helper\sweet-alert-helper.js"></script>
+
+<script src="assets\customjs\quan-ly\phong-ban\xem.js"></script>
+<script src="assets\customjs\quan-ly\phong-ban\bat-loi.js"></script>
+<script src="assets\customjs\quan-ly\phong-ban\them.js"></script>
+<script src="assets\customjs\quan-ly\phong-ban\sua.js"></script>
+<script src="assets\customjs\quan-ly\phong-ban\xoa.js"></script>
